@@ -1,11 +1,4 @@
-resource "aws_s3_bucket" "tfstate" {
-  bucket = "codebuildtfstate"
-  
-  tags = {
-    Name        = "demo_presentation"
-    Environment = "Dev"
-  }
-}
+
 
 
 terraform {
@@ -16,7 +9,7 @@ terraform {
   backend "s3" {
     region  = "us-east-1"
     profile = "default"
-    key     = "${aws_s3_bucket.tfstate.bucket}"
-    bucket  = "${aws_s3_bucket.tfstate.bucket}"
+    key     = "codebuildtfstate"
+    bucket  = "codebuildtfstate"
   }
 }
