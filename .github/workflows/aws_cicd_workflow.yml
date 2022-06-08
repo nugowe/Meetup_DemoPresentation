@@ -28,7 +28,7 @@ jobs:
       - name: Terraform apply
         uses: hashicorp/terraform-github-actions/apply@v0.4.0
         env:
-          TF_ACTION_WORKING_DIR: 'Meetup_DemoPresentation/terraform'
+          #TF_ACTION_WORKING_DIR: 'Meetup_DemoPresentation/terraform'
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
