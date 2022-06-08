@@ -5,24 +5,25 @@ on:
     branches: [ main ]
   
 
-
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    
     steps:
-    - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+
+
+
+      #- id: step2
+        #run: echo "::set-output name=test::world"
     
    
 
 
-   - name: Configure AWS Credentials
-     uses: aws-actions/configure-aws-credentials@v1
-     with:
-       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       aws-region: us-east-1
-
-   - name: Run CodeBuild
-     uses: aws-actions/aws-codebuild-run-build@v1
-     with:
-       project-name: Meetup_Demo
+  
