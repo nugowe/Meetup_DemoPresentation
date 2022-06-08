@@ -17,12 +17,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Run CodeBuild
-        uses: aws-actions/aws-codebuild-run-build@v1
-        with:
-          project-name: meetupdemo
+      - name: Terraform Init
+        uses: hashicorp/terraform-github-actions/init@v0.4.0
+        env:
+          TF_ACTION_WORKING_DIR: 'terraform'
     
-   
+      - name: Terraform Init
+        uses: hashicorp/terraform-github-actions/init@v0.4.0
+        env:
+          TF_ACTION_WORKING_DIR: 'terraform'
 
 
   
