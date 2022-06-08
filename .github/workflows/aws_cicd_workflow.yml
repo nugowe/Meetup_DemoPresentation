@@ -27,9 +27,10 @@ jobs:
 
 
     - name: Terraform Apply
-      id: apply
-      run: terraform apply -no-color
-
+      uses: dflook/terraform-apply@v1
+      with:
+        path: Meetup_DemoPresentation
+        auto_approve: true
      
        
 
