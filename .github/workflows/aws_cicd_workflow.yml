@@ -29,7 +29,7 @@ jobs:
     - name: Terraform Apply
       uses: dflook/terraform-apply@v1
       with:
-        path: ${{ env.GITHUB_WORKSPACE/terraform }}
+        path: env.$GITHUB_WORKSPACE/terraform
         auto_approve: true
      
        
