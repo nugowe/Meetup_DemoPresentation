@@ -6,7 +6,7 @@ on:
   
 
 jobs:
-  deploy:
+  deploy aws cicd:
     runs-on: ubuntu-latest
     
     steps:
