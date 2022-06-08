@@ -1,5 +1,8 @@
 version: 0.2
 
+env:
+  repository_name: meetupdemo
+
 phases:
   install:
     runtime-versions:
@@ -9,6 +12,10 @@ phases:
       - wget https://releases.hashicorp.com/terraform/"$TERRAFORM_VERSION"/terraform_"$TERRAFORM_VERSION"_linux_amd64.zip
       - unzip terraform_"$TERRAFORM_VERSION"_linux_amd64.zip
       - mv terraform /usr/local/bin/
+  
+  pre_build:
+    commands:
+      - aws ecr create-repository --repository-name $repository_name --image-tag-mutability IMMUTABLE
   build:
     commands:
       - terraform --version

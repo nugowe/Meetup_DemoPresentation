@@ -1,4 +1,7 @@
 resource "aws_s3_bucket" "codebuildbucket" {
+    depends_on = [
+    aws_ecr_repository.meetup.name
+  ]
   bucket = "codebuildbucket"
 
   tags = {
@@ -8,6 +11,9 @@ resource "aws_s3_bucket" "codebuildbucket" {
 }
 
 resource "aws_s3_bucket_acl" "codebuildbucket" {
+    depends_on = [
+    aws_ecr_repository.meetup.name
+  ]
   bucket = aws_s3_bucket.codebuildbucket.id
   acl    = "public"
 }
@@ -44,10 +50,13 @@ data "aws_iam_policy_document" "codebuild_policy_document" {
 
 
 module "myapp-project" {
+    depends_on = [
+    aws_ecr_repository.meetup.name
+  ]
 
   source = "lgallard/codebuild/aws"
 
-  name        = "Meetup_Demo"
+  name        = "meetup_demo"
   description = "Codebuild for deploying myapp"
 
   # CodeBuild Source
@@ -75,7 +84,7 @@ module "myapp-project" {
     variables = [
       {
         name  = "REGISTRY_URL"
-        value = "948612111153.dkr.ecr.us-east-1.amazonaws.com/worldcupqatar2022"
+        value = "948612111153.dkr.ecr.us-east-1.amazonaws.com/meetupdemo"
       },
       {
         name  = "AWS_DEFAULT_REGION"

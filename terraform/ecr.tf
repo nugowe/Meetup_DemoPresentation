@@ -2,7 +2,7 @@
 
 
 resource "aws_ecr_repository" "meetup" {
-  name                 = "Meetup_Demo"
+  name                 = "meetupdemo"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -10,17 +10,17 @@ resource "aws_ecr_repository" "meetup" {
   }
 }
 
-output "registry arn" {
+output "registryarn" {
 
     value = aws_ecr_repository.meetup.arn
 }
 
-output "registry id" {
+output "registryid" {
 
     value = aws_ecr_repository.meetup.id
 }
 
-output "registry arn" {
+output "registryuri" {
 
     value = aws_ecr_repository.meetup.repository_url
 }
