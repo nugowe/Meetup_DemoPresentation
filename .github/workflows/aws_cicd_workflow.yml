@@ -29,7 +29,7 @@ jobs:
     - name: Terraform Apply
       uses: dflook/terraform-apply@v1
       with:
-        path: /home/runner/work/Meetup_DemoPresentation/Meetup_DemoPresentation/terraform
+        path: Meetup_DemoPresentation/terraform
         auto_approve: true
      
        
