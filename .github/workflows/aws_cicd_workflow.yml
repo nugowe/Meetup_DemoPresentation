@@ -17,11 +17,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-
-
-
-      #- id: step2
-        #run: echo "::set-output name=test::world"
+      - name: Run CodeBuild
+        uses: aws-actions/aws-codebuild-run-build@v1
+        with:
+          project-name: Meetup_Demo
     
    
 
