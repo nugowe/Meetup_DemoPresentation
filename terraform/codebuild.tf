@@ -1,7 +1,5 @@
 resource "aws_s3_bucket" "codebuildbucket" {
-    depends_on = [
-    aws_ecr_repository.meetup.name
-  ]
+ 
   bucket = "codebuildbucket"
 
   tags = {
@@ -11,9 +9,7 @@ resource "aws_s3_bucket" "codebuildbucket" {
 }
 
 resource "aws_s3_bucket_acl" "codebuildbucket" {
-    depends_on = [
-    aws_ecr_repository.meetup.name
-  ]
+ 
   bucket = aws_s3_bucket.codebuildbucket.id
   acl    = "public"
 }
@@ -50,9 +46,7 @@ data "aws_iam_policy_document" "codebuild_policy_document" {
 
 
 module "myapp-project" {
-    depends_on = [
-    aws_ecr_repository.meetup.name
-  ]
+   
 
   source = "lgallard/codebuild/aws"
 
