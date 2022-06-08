@@ -26,13 +26,11 @@ jobs:
       run: terraform validate -no-color
 
 
-    - name: Container run & s3 Bucket push
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        AWS_DEFAULT_REGION: us-east-1
-      run: |
-        terraform --version && echo $GITHUB_WORKSPACE
+    - name: Terraform Apply
+      uses: dflook/terraform-apply@v1
+      with:
+        path: /home/runner/work/Meetup_DemoPresentation/Meetup_DemoPresentation/terraform
+        auto_approve: true
      
        
 
