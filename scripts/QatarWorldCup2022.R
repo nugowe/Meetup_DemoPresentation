@@ -283,7 +283,7 @@ TeamGroups %>%
   column_spec(10, background = "#A5D8DD") %>% 
   column_spec(11, background = "#488A99") %>% 
   
-  footnote(general = "(H) represents the Hosting Nation. ", "Data Sources are from Wikipedia.com and FIFA.com", sprintf("Last successful Webscrape time was %s", WebscrapeTime )) %>% save_kable(file = "Qatar2022Groups.html", self_contained = T) 
+  footnote(general = "(H) represents the Hosting Nation. ", "Data Sources are from Wikipedia.com and FIFA.com && Edit made live from our Meetup!!!!", sprintf("Last successful Webscrape time was %s", WebscrapeTime )) %>% save_kable(file = "Qatar2022Groups.html", self_contained = T) 
   
  
   
