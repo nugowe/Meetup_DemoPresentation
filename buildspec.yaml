@@ -1,24 +1,32 @@
 version: 0.2
-
 env:
-  repository_name: meetupdemo
+  AWS_DEFAULT_REGION: 'us-east-2'
+  AWS_ACCOUNT_ID: '948612111153'
+  REPO_NAME: 'fifaworldcup2022'
+  IMAGE_TAG: 'latest'
 
 phases:
-  install:
-    runtime-versions:
-      python: 3.7
-    commands:
-      - tf_version=$TERRAFORM_VERSION
-      - wget https://releases.hashicorp.com/terraform/"$TERRAFORM_VERSION"/terraform_"$TERRAFORM_VERSION"_linux_amd64.zip
-      - unzip terraform_"$TERRAFORM_VERSION"_linux_amd64.zip
-      - mv terraform /usr/local/bin/
-  
   pre_build:
     commands:
-      - aws ecr create-repository --repository-name $repository_name --image-tag-mutability IMMUTABLE
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPO_NAME
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=$IMAGE_TAG
   build:
     commands:
-      - terraform --version
-      - terraform init -input=false
-      - terraform validate
-      - terraform apply --auto-approve
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"fifaworldcup2022","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+    files: imagedefinitions.json
