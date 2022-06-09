@@ -15,14 +15,14 @@ url <- "https://en.wikipedia.org/wiki/2022_FIFA_World_Cup"
 session = bow(user_agent = "FIFAWCQ-Table-Scrape", url)
 
 
-GROUPA <- scrape(session) %>% html_nodes("table.wikitable:nth-child(69) > tbody:nth-child(1)") %>% html_table()
-GROUPB <- scrape(session) %>% html_nodes("table.wikitable:nth-child(89) > tbody:nth-child(1)") %>% html_table()
-GROUPC <- scrape(session) %>% html_nodes("table.wikitable:nth-child(109) > tbody:nth-child(1)") %>% html_table()
-GROUPD <- scrape(session) %>% html_nodes("table.wikitable:nth-child(129) > tbody:nth-child(1)") %>% html_table()
-GROUPE <- scrape(session) %>% html_nodes("table.wikitable:nth-child(149) > tbody:nth-child(1)") %>% html_table()
-GROUPF <- scrape(session) %>% html_nodes("table.wikitable:nth-child(169) > tbody:nth-child(1)") %>% html_table()
-GROUPG <- scrape(session) %>% html_nodes("table.wikitable:nth-child(189) > tbody:nth-child(1)") %>% html_table()
-GROUPH <- scrape(session) %>% html_nodes("table.wikitable:nth-child(209) > tbody:nth-child(1)") %>% html_table()
+GROUPA <- scrape(session) %>% html_nodes("table.wikitable:nth-child(68) > tbody:nth-child(1)") %>% html_table()
+GROUPB <- scrape(session) %>% html_nodes("table.wikitable:nth-child(88) > tbody:nth-child(1)") %>% html_table()
+GROUPC <- scrape(session) %>% html_nodes("table.wikitable:nth-child(108) > tbody:nth-child(1)") %>% html_table()
+GROUPD <- scrape(session) %>% html_nodes("table.wikitable:nth-child(128) > tbody:nth-child(1)") %>% html_table()
+GROUPE <- scrape(session) %>% html_nodes("table.wikitable:nth-child(148) > tbody:nth-child(1)") %>% html_table()
+GROUPF <- scrape(session) %>% html_nodes("table.wikitable:nth-child(168) > tbody:nth-child(1)") %>% html_table()
+GROUPG <- scrape(session) %>% html_nodes("table.wikitable:nth-child(188) > tbody:nth-child(1)") %>% html_table()
+GROUPH <- scrape(session) %>% html_nodes("table.wikitable:nth-child(208) > tbody:nth-child(1)") %>% html_table()
 WebscrapeTime <- format(Sys.time(), "%A %B %Y, %H:%M:%S (CST)")
 
 
